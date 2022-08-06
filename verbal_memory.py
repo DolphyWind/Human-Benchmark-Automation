@@ -8,6 +8,9 @@ from userdata import username, password
 # Maximum score that bot can do
 max_score = 1000
 
+# Seconds for program to wait until finding web elements
+search_time = 10
+
 class Application:
     def __init__(self):
         self.driver = webdriver.Firefox()
@@ -17,8 +20,8 @@ class Application:
 
     def login(self):
         self.driver.get('https://humanbenchmark.com/login')
-        username_input = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.NAME, 'username')))
-        password_input = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.NAME, 'password')))
+        username_input = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.NAME, 'username')))
+        password_input = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.NAME, 'password')))
 
         username_input.send_keys(username)
         password_input.send_keys(password)
@@ -28,11 +31,11 @@ class Application:
 
     def playVerbalMemory(self):
         self.driver.get("https://humanbenchmark.com/tests/verbal-memory")
-        WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//button[@class='css-de05nr e19owgy710']"))).click()
+        WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.XPATH, "//button[@class='css-de05nr e19owgy710']"))).click()
 
         score = 0
         while score < max_score:
-            text = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.CLASS_NAME, 'word'))).text
+            text = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'word'))).text
             seen_button = self.driver.find_element_by_xpath("//button[contains(text(),'SEEN')]")
             new_button = self.driver.find_element_by_xpath("//button[contains(text(),'NEW')]")
 
@@ -45,7 +48,7 @@ class Application:
 
         counter = 3
         while counter != 0:
-            text = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.CLASS_NAME, 'word'))).text
+            text = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'word'))).text
             seen_button = self.driver.find_element_by_xpath("//button[contains(text(),'SEEN')]")
             new_button = self.driver.find_element_by_xpath("//button[contains(text(),'NEW')]")
 
