@@ -17,6 +17,7 @@ class Application:
         self.words = list()
         self.login()
         self.playVerbalMemory()
+        self.saveScore()
 
     def login(self):
         self.driver.get('https://humanbenchmark.com/login')
@@ -59,6 +60,7 @@ class Application:
                 seen_button.click()
             counter -= 1
 
+    def saveScore(self):
         self.driver.find_element_by_xpath("//button[contains(text(),'Save score')]").click()
         print("Press enter to close the program...", end='')
         input()
