@@ -8,6 +8,13 @@ from userdata import username, password
 # Seconds for program to wait until finding web elements
 search_time = 10
 
+def waitForClassNameAndClick(item, name):
+    while True:
+        class_attr = item.get_attribute('class')
+        if class_attr.split(' ')[0] == name:
+            item.click()
+            return
+
 class Application:
     def __init__(self):
         self.driver = webdriver.Firefox()
@@ -30,12 +37,13 @@ class Application:
         self.driver.get("https://humanbenchmark.com/tests/reactiontime")
         rounds = 0
         max_rounds = 5
-        WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'view-splash'))).click()
-        WebDriverWait(self.driver, 999999).until(EC.presence_of_element_located((By.CLASS_NAME, 'view-go'))).click()
+        splash = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'view-splash')))
+        splash.click()
+        waitForClassNameAndClick(splash, 'view-go')
         rounds += 1
         while rounds < max_rounds:
-            WebDriverWait(self.driver, 999999).until(EC.presence_of_element_located((By.CLASS_NAME, 'view-result'))).click()
-            WebDriverWait(self.driver, 999999).until(EC.presence_of_element_located((By.CLASS_NAME, 'view-go'))).click()
+            waitForClassNameAndClick(splash, 'view-result')
+            waitForClassNameAndClick(splash, 'view-go')
             rounds += 1
 
     def saveScore(self):
