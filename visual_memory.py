@@ -94,7 +94,7 @@ class Application:
             rounds += 1
 
     def saveScore(self):
-        #WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.XPATH, "//button[contains(text(),'Save score')]"))).click()
+        WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.XPATH, "//button[contains(text(),'Save score')]"))).click()
         print("Press enter to close the program...", end='')
         input()
         self.driver.close()
