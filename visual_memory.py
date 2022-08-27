@@ -42,7 +42,7 @@ class Application:
 
         memory_test = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'memory-test')))
 
-        rounds = 0
+        rounds = 1
         while rounds < max_rounds + 3:
             squares = WebDriverWait(memory_test, search_time).until(
                 EC.presence_of_all_elements_located((By.CLASS_NAME, 'css-lxtdud')))
@@ -94,7 +94,7 @@ class Application:
             rounds += 1
 
     def saveScore(self):
-        WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.XPATH, "//button[contains(text(),'Save score')]"))).click()
+        #WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.XPATH, "//button[contains(text(),'Save score')]"))).click()
         print("Press enter to close the program...", end='')
         input()
         self.driver.close()
