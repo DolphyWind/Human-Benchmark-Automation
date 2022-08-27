@@ -8,13 +8,6 @@ from userdata import username, password
 # Seconds for program to wait until finding web elements
 search_time = 10
 
-def waitUntilDeactivated(item):
-    while True:
-        try:
-            item.find_element_by_class_name('active')
-        except:
-            return
-
 class Application:
     def __init__(self):
         self.driver = webdriver.Firefox()
@@ -33,8 +26,12 @@ class Application:
         self.driver.find_element_by_xpath('/html/body/div[1]/div/div[4]/div/div/form/p[3]/input').click()
         sleep(1)
 
+    def muteGame(self):
+        WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'fa-volume-up'))).click()
+
     def playChimpTest(self):
         self.driver.get('https://humanbenchmark.com/tests/chimp')
+        self.muteGame()
         WebDriverWait(self.driver, search_time).until(
             EC.presence_of_element_located((By.XPATH, "//button[@class='css-de05nr e19owgy710']"))).click()
 

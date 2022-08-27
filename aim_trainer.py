@@ -16,6 +16,8 @@ class Application:
         self.playAimTrainer()
         self.saveScore()
 
+    def muteGame(self):
+        WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'fa-volume-up'))).click()
     def login(self):
         self.driver.get('https://humanbenchmark.com/login')
         username_input = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.NAME, 'username')))
@@ -29,6 +31,8 @@ class Application:
 
     def playAimTrainer(self):
         self.driver.get("https://humanbenchmark.com/tests/aim")
+        self.muteGame()
+
         target_count = 30
 
         game_area = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'css-42wpoy')))

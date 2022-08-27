@@ -18,6 +18,9 @@ class Application:
         self.playSequenceMemory()
         self.saveScore()
 
+    def muteGame(self):
+        WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'fa-volume-up'))).click()
+
     def login(self):
         self.driver.get('https://humanbenchmark.com/login')
         username_input = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.NAME, 'username')))
@@ -31,7 +34,9 @@ class Application:
 
     def playSequenceMemory(self):
         self.driver.get('https://humanbenchmark.com/tests/sequence')
+        self.muteGame()
         WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.XPATH, "//button[@class='css-de05nr e19owgy710']"))).click()
+
         squares = WebDriverWait(self.driver, search_time).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'square')))
         squares_item = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'squares')))
         square_rows = []
