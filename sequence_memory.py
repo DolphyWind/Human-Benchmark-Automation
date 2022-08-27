@@ -9,7 +9,7 @@ from userdata import username, password
 search_time = 10
 
 # Maximum rounds that bot plays
-max_rounds = 30
+max_rounds = 50
 
 class Application:
     def __init__(self):
