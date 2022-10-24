@@ -27,7 +27,7 @@ class Application:
         username_input.send_keys(username)
         password_input.send_keys(password)
 
-        self.driver.find_element_by_xpath('/html/body/div[1]/div/div[4]/div/div/form/p[3]/input').click()
+        self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div[4]/div/div/form/p[3]/input').click()
         sleep(1)
 
     def playVerbalMemory(self):
@@ -37,8 +37,8 @@ class Application:
         score = 0
         while score < max_score:
             text = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'word'))).text
-            seen_button = self.driver.find_element_by_xpath("//button[contains(text(),'SEEN')]")
-            new_button = self.driver.find_element_by_xpath("//button[contains(text(),'NEW')]")
+            seen_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'SEEN')]")
+            new_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'NEW')]")
 
             if text in self.words:
                 seen_button.click()
@@ -50,8 +50,8 @@ class Application:
         counter = 3
         while counter != 0:
             text = WebDriverWait(self.driver, search_time).until(EC.presence_of_element_located((By.CLASS_NAME, 'word'))).text
-            seen_button = self.driver.find_element_by_xpath("//button[contains(text(),'SEEN')]")
-            new_button = self.driver.find_element_by_xpath("//button[contains(text(),'NEW')]")
+            seen_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'SEEN')]")
+            new_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'NEW')]")
 
             if text in self.words:
                 new_button.click()

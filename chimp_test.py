@@ -23,7 +23,7 @@ class Application:
         username_input.send_keys(username)
         password_input.send_keys(password)
 
-        self.driver.find_element_by_xpath('/html/body/div[1]/div/div[4]/div/div/form/p[3]/input').click()
+        self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div[4]/div/div/form/p[3]/input').click()
         sleep(1)
 
     def muteGame(self):
