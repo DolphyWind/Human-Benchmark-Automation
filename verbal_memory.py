@@ -5,10 +5,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 from userdata import username, password
 
-# Maximum score that bot can do
+# Maximum score that the bot can achieve before stopping
 max_score = 1000
 
-# Seconds for program to wait until finding web elements
+# The program works by searching some specific elements in DOM.
+# Sometimes the element that the program looking for might not be present
+# In those cases program waits for search_time amount of seconds before
+# attempting to run the next instruction
 search_time = 10
 
 class Application:

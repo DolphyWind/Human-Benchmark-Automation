@@ -6,7 +6,10 @@ from time import sleep
 from userdata import username, password
 import pyautogui
 
-# Seconds for program to wait until finding web elements
+# The program works by searching some specific elements in DOM.
+# Sometimes the element that the program looking for might not be present
+# In those cases program waits for search_time amount of seconds before
+# attempting to run the next instruction
 search_time = 10
 
 class Application:
